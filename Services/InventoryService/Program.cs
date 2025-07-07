@@ -23,7 +23,7 @@ builder.Services.AddMassTransit(x =>
             h.Password("guest");
         });
 
-        cfg.ReceiveEndpoint("order-created-queue", e =>
+        cfg.ReceiveEndpoint("inventory-order-created-queue", e =>
         {
             e.ConfigureConsumer<OrderCreatedEventConsumer>(context);
         });
@@ -50,20 +50,20 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<InventoryDbContext>();
-    db.Database.EnsureCreated();
+// using (var scope = app.Services.CreateScope())
+// {
+//     var db = scope.ServiceProvider.GetRequiredService<InventoryDbContext>();
+//     db.Database.EnsureCreated();
 
-    if (!db.InventoryItems.Any())
-    {
-        db.InventoryItems.AddRange(
-            new InventoryItem { ProductName = "Dell Vostro 1510", AvailableQuantity = 100 },
-            new InventoryItem { ProductName = "MacBook Pro 16", AvailableQuantity = 50 }
-        );
-        db.SaveChanges();
-    }
-}
+//     if (!db.InventoryItems.Any())
+//     {
+//         db.InventoryItems.AddRange(
+//             new InventoryItem { ProductName = "Dell Vostro 1510", AvailableQuantity = 100 },
+//             new InventoryItem { ProductName = "MacBook Pro 16", AvailableQuantity = 50 }
+//         );
+//         db.SaveChanges();
+//     }
+// }
 
 
 app.Run();

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "Services\ApiG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService", "Services\AuthService\AuthService.csproj", "{85E0FA11-6DBD-465F-8898-77FA93815DBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "Services\NotificationService\NotificationService.csproj", "{654444D3-ADC0-4E78-8EAF-10B0B3EEC5ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{85E0FA11-6DBD-465F-8898-77FA93815DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85E0FA11-6DBD-465F-8898-77FA93815DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85E0FA11-6DBD-465F-8898-77FA93815DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{654444D3-ADC0-4E78-8EAF-10B0B3EEC5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654444D3-ADC0-4E78-8EAF-10B0B3EEC5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{654444D3-ADC0-4E78-8EAF-10B0B3EEC5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654444D3-ADC0-4E78-8EAF-10B0B3EEC5ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{404579AE-851F-4BA6-A98D-89CE5F3FF9BD} = {2BE35890-445A-4717-B246-F42FCB0936B3}
 		{7602249E-814D-452E-B1C1-34A8E2E1BE3B} = {2BE35890-445A-4717-B246-F42FCB0936B3}
 		{85E0FA11-6DBD-465F-8898-77FA93815DBE} = {2BE35890-445A-4717-B246-F42FCB0936B3}
+		{654444D3-ADC0-4E78-8EAF-10B0B3EEC5ED} = {2BE35890-445A-4717-B246-F42FCB0936B3}
 	EndGlobalSection
 EndGlobal
