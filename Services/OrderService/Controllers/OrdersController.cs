@@ -9,12 +9,19 @@ using OrderService.Models;
 
 namespace OrderService.Controllers;
 
-[Authorize(Roles = "Admin")]
+// [Authorize(Roles = "Admin")]
 [ApiController]
 [Route("api/[controller]")]
 public class OrdersController(OrderDbContext context) : ControllerBase
 {
     private readonly OrderDbContext _context = context;
+
+    [HttpGet("ping")]
+    public IActionResult Ping()
+    {
+        return Ok("Order Service is running");
+    }
+
 
     [HttpGet("{userId}")]
     public async Task<ActionResult<IEnumerable<Order>>> GetUserOrders(string userId)

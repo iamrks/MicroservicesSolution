@@ -28,3 +28,15 @@ This is a hands-on microservices architecture built using **.NET Core**, **Entit
 
 ```bash
 docker run -d --hostname rabbitmq --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+
+
+docker build -t orderservice -f Services/OrderService/Dockerfile .
+
+docker run -d -p 5300:5300 --name orderservice -e ASPNETCORE_ENVIRONMENT=Development -e ASPNETCORE_URLS=http://+:5300 -e ConnectionStrings__DefaultConnection="Server=host.docker.internal;Database=OrderDb;User Id=sa;Password=password123;TrustServerCertificate=True;" -e RabbitMq__Host=host.docker.internal orderservice
+
+
+
+
+
+docker build -t apigateway -f Services/ApiGateway/Dockerfile .

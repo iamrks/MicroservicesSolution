@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  catalogservice:
+    build:
+      context: .
+      dockerfile: Services/CatalogService/Dockerfile
+    ports:
+      - "5100:5100"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5100
+      - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=CatalogDb;User Id=sa;Password=password123;TrustServerCertificate=True;
+      - RabbitMq__Host=rabbitmq
+
+  basketservice:
+    build:
+      context: .
+      dockerfile: Services/BasketService/Dockerfile
+    ports:
+      - "5200:5200"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5200
+      - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=BasketDb;User Id=sa;Password=password123;TrustServerCertificate=True;
+      - RabbitMq__Host=rabbitmq
+
+  orderservice:
+    build:
+      context: .
+      dockerfile: Services/OrderService/Dockerfile
+    ports:
+      - "5300:5300"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5300
+      - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=OrderDb;User Id=sa;Password=password123;TrustServerCertificate=True;
+      - RabbitMq__Host=rabbitmq
+
+  notificationservice:
+    build:
+      context: .
+      dockerfile: Services/NotificationService/Dockerfile
+    ports:
+      - "5400:5400"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5400
+      - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=NotificationDb;User Id=sa;Password=password123;TrustServerCertificate=True;
+      - RabbitMq__Host=rabbitmq
+
+  authservice:
+    build:
+      context: .
+      dockerfile: Services/AuthService/Dockerfile
+    ports:
+      - "5500:5500"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5500
+      - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=AuthDb;User Id=sa;Password=password123;TrustServerCertificate=True;
+      - RabbitMq__Host=rabbitmq
+
+  inventoryservice:
+    build:
+      context: .
+      dockerfile: Services/InventoryService/Dockerfile
+    ports:
+      - "5600:5600"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5600
+      - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=InventoryDb;User Id=sa;Password=password123;TrustServerCertificate=True;
+      - RabbitMq__Host=rabbitmq
+
+  apigateway:
+    build:
+      context: .
+      dockerfile: Services/ApiGateway/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - RabbitMq__Host=rabbitmq
